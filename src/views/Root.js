@@ -1,13 +1,13 @@
 import React from 'react';
 import GlobalStyle from 'theme/GlobalStyle';
 import { BrowserRouter, Route } from 'react-router-dom';
+import gsap from "gsap";
+import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import Homepage from './Homepage';
 import About from './About';
 import Gallery from './Gallery';
 import Contact from './Contact';
 import Admin from './Admin';
-import gsap from "gsap";
-import ScrollToPlugin from 'gsap/ScrollToPlugin'
 
 
 const Root = () => {

@@ -129,18 +129,17 @@ const Admin = () => {
               if (item._id === currentProject._id) {
                 return (
                   <ProjectInfo key={item._id} active>
-                    <InfoItem color="black" key={item._id + "-date"}>{item.date}</InfoItem>
-                    <InfoItem color="black" key={item._id + "-title"}>{item.title}</InfoItem>
-                  </ProjectInfo>
-                );
-              } else {
-                return (
-                  <ProjectInfo key={item._id} onClick={() => changeActiveProject(item)}>
-                    <InfoItem color="black" key={item._id + "-date"}>{item.date}</InfoItem>
-                    <InfoItem color="black" key={item._id + "-title"}>{item.title}</InfoItem>
+                    <InfoItem color="black" key={`${item._id}-date`}>{item.date}</InfoItem>
+                    <InfoItem color="black" key={`${item._id}-title`}>{item.title}</InfoItem>
                   </ProjectInfo>
                 );
               }
+                return (
+                  <ProjectInfo key={item._id} onClick={() => changeActiveProject(item)}>
+                    <InfoItem color="black" key={`${item._id}-date`}>{item.date}</InfoItem>
+                    <InfoItem color="black" key={`${item._id}-title`}>{item.title}</InfoItem>
+                  </ProjectInfo>
+                );
             })
           ) : (
             <Header fontSize="2.7rem" color="black">
@@ -172,5 +171,9 @@ const Admin = () => {
     </MainTemplate>
   );
 };
+
+// Admin.propTypes = {
+//
+// }
 
 export default Admin;

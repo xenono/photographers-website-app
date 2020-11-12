@@ -19,6 +19,9 @@ const HeroWrapper = styled.div`
   height: 100vh;
   background: url(${HeroPhoto}) no-repeat;
   background-size: cover;
+  @media(max-width: 400px){
+    background-position: 40%;
+  }
 `;
 
 const StyledHeader = styled(Header)`

@@ -115,13 +115,78 @@ const MobileBurger = styled.div`
   
 `;
 
+
+
 const Navigation = ({ white, admin }) => {
   const navRef = useRef(null)
   const tl = gsap.timeline()
   const [toggleMobile,setMobile] = useState(false);
   const [isNavExpand,expandNav] = useState(false)
 
-  useEffect(()=>{
+  const adminNav = (
+    <StyledLink white={white} to="/">
+      Matthew Admin
+    </StyledLink>
+  )
+
+  const userNav = (
+    <>
+      <StyledLink white={white} homepage="true" to="/">
+        Matthew
+      </StyledLink>
+      <NavList>
+        <StyledLink white={white} to="/">
+          home
+        </StyledLink>
+        <StyledLink white={white} to="/gallery">
+          gallery
+        </StyledLink>
+        <StyledLink white={white} to="/contact">
+          contact
+        </StyledLink>
+        <StyledLink white={white} to="/about">
+          about me
+        </StyledLink>
+        <StyledLink white={white} to="/admin">
+          admin
+        </StyledLink>
+      </NavList>
+    </>
+  )
+
+  const mobileNav = (
+    <>
+      <StyledLink white={white} homepage="true" to="/">
+        Matthew
+      </StyledLink>
+      {toggleMobile &&
+      <MobileBurgerWrapper onClick={() => expandNav(!isNavExpand)}>
+        <MobileBurger />
+      </MobileBurgerWrapper>}
+      {isNavExpand && <NavList isNavExpand = {isNavExpand} ref={navRef}>
+        <StyledLink white={white} to="/">
+          home
+        </StyledLink>
+        <StyledLink white={white} to="/gallery">
+          gallery
+        </StyledLink>
+        <StyledLink white={white} to="/contact">
+          contact
+        </StyledLink>
+        <StyledLink white={white} to="/about">
+          about me
+        </StyledLink>
+        <StyledLink white={white} to="/admin">
+          admin
+        </StyledLink>
+      </NavList>}
+    </>
+  )
+
+  const currentNav = toggleMobile ? mobileNav : userNav
+
+
+    useEffect(()=>{
     if(toggleMobile !== true && window.innerWidth <= 900){
       setMobile(true)
     }
@@ -137,71 +202,21 @@ const Navigation = ({ white, admin }) => {
 
   return (
     <Wrapper>
-      {toggleMobile ? (admin ? (
-          <StyledLink white={white} to="/">
-            Matthew Admin
-          </StyledLink>
-        ) : (
-          <>
-            <StyledLink white={white} homepage="true" to="/">
-              Matthew
-            </StyledLink>
-            {toggleMobile &&
-            <MobileBurgerWrapper onClick={() => expandNav(!isNavExpand)}>
-              <MobileBurger />
-            </MobileBurgerWrapper>}
-            {isNavExpand && <NavList isNavExpand = {isNavExpand} ref={navRef}>
-              <StyledLink white={white} to="/">
-                home
-              </StyledLink>
-              <StyledLink white={white} to="/gallery">
-                gallery
-              </StyledLink>
-              <StyledLink white={white} to="/contact">
-                contact
-              </StyledLink>
-              <StyledLink white={white} to="/about">
-                about me
-              </StyledLink>
-              <StyledLink white={white} to="/admin">
-                admin
-              </StyledLink>
-            </NavList>}
-          </>
-        )) : (admin ? (
-          <StyledLink white={white}  to="/">
-            Matthew Admin
-          </StyledLink>
-        ) : (
-          <>
-            <StyledLink white={white} homepage="true" to="/">
-              Matthew
-            </StyledLink>
-            <NavList>
-              <StyledLink white={white} to="/">
-                home
-              </StyledLink>
-              <StyledLink white={white} to="/gallery">
-                gallery
-              </StyledLink>
-              <StyledLink white={white} to="/contact">
-                contact
-              </StyledLink>
-              <StyledLink white={white} to="/about">
-                about me
-              </StyledLink>
-              <StyledLink white={white} to="/admin">
-                admin
-              </StyledLink>
-            </NavList>
-          </>
-        ))}
+      {
+        admin ? adminNav : currentNav
+      }
     </Wrapper>
   );
 };
 
 Navigation.propTypes = {
-  white: PropTypes.string,
-  admin: PropTypes.string,
+  white: PropTypes.bool,
+  admin: PropTypes.bool,
 }
+
+Navigation.defaultProps = {
+  white: false,
+  admin: false,
+}
+
 export default Navigation;

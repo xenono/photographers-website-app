@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from 'components/Navigation/Navigation';
-import Footer from 'components/Footer/Footer.js';
+import Footer from 'components/Footer/Footer';
 
 const MainTemplate = ({ children, admin }) => (
   <>

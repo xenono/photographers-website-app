@@ -42,8 +42,8 @@ const WeedingSection = ({ projectFormRef }) => {
   );
 };
 
-WeedingSection.propTypes = {
-  projectFormRef: PropTypes.object
-}
+// WeedingSection.propTypes = {
+  // projectFormRef: PropTypes.shape({ root: PropTypes.string.isRequired })
+// }
 
 export default WeedingSection;

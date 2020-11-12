@@ -73,7 +73,7 @@ const Contact = () => (
           }
           return errors;
         }}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+        render={({ handleSubmit, submitting }) => (
           <StyledForm onSubmit={handleSubmit}>
             <Field name="title">
               {({ input, meta }) => (

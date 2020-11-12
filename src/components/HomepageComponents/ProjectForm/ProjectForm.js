@@ -70,9 +70,6 @@ const onSubmit = (values) => {
 
   // Clearing out form because final-form form.reset() doesn't work
   values.email = values.title = values.message = ""
-
-  alert("Form sent successfully")
-
 };
 
 const ProjectForm = () => (
@@ -92,7 +89,7 @@ const ProjectForm = () => (
         }
         return errors;
       }}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
+      render={({ handleSubmit }) => (
         <StyledForm onSubmit={handleSubmit}>
           <StyledHeader fontSize="5rem">Estimate your project</StyledHeader>
           <Field name="title">
